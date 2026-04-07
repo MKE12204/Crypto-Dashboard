@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="toast-container"></div>
+
+<div class="container">
+    <div class="header-flex">
+        <h1 class="section-title">Crypto Dashboard</h1>
+        <div id="header-right">
+            <select id="currencySelect">
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="btc">BTC</option>
+            </select>
+            <div id="fear-greed-container">
+                <div class="skeleton" style="width: 150px; height: 40px;"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <div class="search-wrapper">
+            <input type="text" id="coinSearch" placeholder="Search by name or symbol...">
+        </div>
+    </div>
+
+    <div class="crypto-table-wrapper">
+        <table id="cryptoTable">
+    <thead>
+        <tr>
+            <th></th> 
+            <th>#</th>
+            <th>Coin</th>
+            <th onclick="sortTable('current_price', this)" class="sortable">Price <span class="sort-icon"></span></th>
+            <th onclick="sortTable('price_change_percentage_24h', this)" class="sortable">24h Change <span class="sort-icon"></span></th>
+            <th class="hide-mobile">Market Cap</th>
+            <th class="hide-mobile">Last 7 Days</th>
+        </tr>
+    </thead>
+            <tbody id="cryptoBody"></tbody>
+        </table>
+    </div>
+    
+    <div class="pagination-wrapper">
+        <button id="loadMoreBtn">Load More</button>
+    </div>
+</div>
+
+<div id="coinModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div id="modalData"></div>
+    </div>
+</div>
+
+<script src="api.js"></script>
+<script src="ui.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

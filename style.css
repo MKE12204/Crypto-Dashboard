@@ -1,0 +1,352 @@
+:root {
+    --bg-dark: #0f0f0f;
+    --card-bg: #1a1a1a;
+    --primary: #00AEEF;
+    --green: #00ff88;
+    --red: #ff3366;
+    --text-gray: #94a3b8;
+    --border: rgba(255, 255, 255, 0.08);
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Глобальные стили */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-dark);
+    color: #ffffff;
+    padding: 15px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- ШАПКА --- */
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.section-title {
+    font-family: 'Bebas Neue', cursive;
+    font-size: clamp(24px, 6vw, 42px);
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #fff 30%, var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#currencySelect {
+    background: var(--card-bg);
+    color: #fff;
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+    transition: var(--transition);
+}
+
+#currencySelect:focus { border-color: var(--primary); }
+
+.fng-badge {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 130px;
+}
+
+.fng-badge small { color: var(--text-gray); font-size: 10px; text-transform: uppercase; }
+.fng-value { color: var(--primary); font-weight: 700; font-size: 13px; display: block; }
+
+/* --- ПОИСК --- */
+.controls { margin-bottom: 20px; }
+#coinSearch {
+    width: 100%;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    border-radius: 16px;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
+    transition: var(--transition);
+}
+
+#coinSearch:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 174, 239, 0.15);
+}
+
+/* --- ТАБЛИЦА (Десктоп) --- */
+.crypto-table-wrapper {
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: rgba(255,255,255,0.03);
+    padding: 18px;
+    text-align: left;
+    color: var(--text-gray);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+td {
+    padding: 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    vertical-align: middle;
+}
+
+tr:last-child td { border-bottom: none; }
+tr:hover { background: rgba(255,255,255,0.02); cursor: pointer; }
+
+.coin-info { display: flex; align-items: center; gap: 14px; }
+.coin-info img { width: 32px; height: 32px; border-radius: 50%; }
+.coin-symbol { color: var(--text-gray); font-size: 12px; font-weight: 400; }
+
+.text-green { color: var(--green); font-weight: 600; }
+.text-red { color: var(--red); font-weight: 600; }
+.star { color: #333; font-size: 20px; cursor: pointer; transition: var(--transition); }
+.star.active { color: #f1c40f; }
+
+/* --- КНОПКА LOAD MORE --- */
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+#loadMoreBtn {
+    background: linear-gradient(135deg, var(--primary), #007bb0);
+    color: #fff;
+    border: none;
+    padding: 16px 45px;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 10px 20px rgba(0, 174, 239, 0.2);
+}
+
+#loadMoreBtn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(0, 174, 239, 0.3); }
+#loadMoreBtn:active { transform: translateY(0); }
+
+/* --- МОБИЛЬНАЯ АДАПТАЦИЯ (iPhone 12-15, SE) --- */
+@media (max-width: 768px) {
+    body { padding: 10px; }
+
+    .header-flex { flex-direction: column; align-items: flex-start; gap: 20px; }
+    #header-right { width: 100%; justify-content: space-between; }
+    
+    /* Магия: превращаем таблицу в список карточек */
+    thead { display: none; } /* Прячем заголовки */
+    
+    table, tbody, tr, td { display: block; width: 100%; }
+    
+    tr {
+        padding: 15px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: 40px 1fr 1fr; /* Звезда | Инфо | Цена */
+        grid-template-areas: 
+            "fav info price"
+            "fav info change";
+        align-items: center;
+    }
+
+    td:nth-child(1) { grid-area: fav; padding: 0; } /* Звездочка */
+    td:nth-child(2) { display: none; } /* Скрываем порядковый номер # */
+    
+    td:nth-child(3) { /* Монета */
+        grid-area: info;
+        padding: 0;
+        border: none;
+    }
+
+    td:nth-child(4) { /* Цена */
+        grid-area: price;
+        text-align: right;
+        padding: 0;
+        border: none;
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    td:nth-child(5) { /* Изменение % */
+        grid-area: change;
+        text-align: right;
+        padding: 0;
+        border: none;
+        font-size: 13px;
+    }
+
+    .hide-mobile { display: none; } /* Прячем Капитализацию и График */
+    
+    #loadMoreBtn { width: 100%; }
+
+    .coin-info { gap: 10px; }
+    .coin-info img { width: 28px; height: 28px; }
+}
+
+/* Совсем маленькие экраны (iPhone SE) */
+@media (max-width: 380px) {
+    .section-title { font-size: 24px; }
+    .fng-badge { min-width: 100px; padding: 6px; }
+    td:nth-child(4) { font-size: 14px; }
+}
+
+/* --- МОДАЛЬНОЕ ОКНО --- */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: #222;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 24px;
+    padding: 30px;
+    position: relative;
+    border: 1px solid var(--border);
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: var(--text-gray);
+    cursor: pointer;
+}
+
+/* --- ТОСТЫ --- */
+.toast {
+    background: #222;
+    color: #fff;
+    padding: 14px 24px;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 10px;
+    animation: toastIn 0.3s ease-out;
+}
+
+@keyframes toastIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* --- СТИЛИ ДЛЯ СТРЕЛОК СОРТИРОВКИ --- */
+.sortable {
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s;
+    position: relative;
+    padding-right: 25px !important; /* Место под иконку */
+}
+
+.sortable:hover {
+    color: var(--primary);
+}
+
+.sort-icon {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m7 15 5 5 5-5'/%3E%3Cpath d='m7 9 5-5 5 5'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+/* Когда активна сортировка по возрастанию (ASC) */
+th.asc .sort-icon {
+    opacity: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300AEEF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m18 15-6-6-6 6'/%3E%3C/svg%3E");
+    transform: translateY(-50%) rotate(0deg);
+}
+
+/* Когда активна сортировка по убыванию (DESC) */
+th.desc .sort-icon {
+    opacity: 1;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300AEEF' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    transform: translateY(-50%) rotate(0deg);
+}
+
+.fng-badge {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 10px 15px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 140px;
+}
+
+.fng-badge small {
+    color: var(--text-gray);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.fng-value {
+    font-weight: 800;
+    font-size: 14px;
+}
+
+/* Динамические цвета для индекса */
+.fng-value.extreme-fear { color: #ff3366; }
+.fng-value.fear { color: #ff8c00; }
+.fng-value.neutral { color: #ffeb3b; }
+.fng-value.greed { color: #00ff88; }
+.fng-value.extreme-greed { color: #00e5ff; }
