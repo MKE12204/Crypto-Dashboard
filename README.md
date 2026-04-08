@@ -1,4 +1,4 @@
-# 🚀 Crypto Dashboard - Real-Time Market Tracker
+# Crypto Dashboard - Real-Time Market Tracker
 
 A sleek, responsive, and high-performance Cryptocurrency Dashboard built with vanilla JavaScript. This project provides real-time market data, interactive charts, and a personalized user experience.
 
@@ -32,9 +32,15 @@ The application features a unique responsive logic. While desktop users see a co
 
 ## ⚙️ Project Structure
 
-```text
-├── index.html    # Main entry point & structure
-├── api.js        # API handling & Error management (Status 429 logic)
-├── ui.js         # Rendering logic, formatters & Sparklines
-├── script.js     # State management, Event listeners & Sorting
-└── style.css     # Modern UI styles & Extreme responsiveness
+```CRYPTO/
+├── src/
+│   ├── css/
+│   │   └── style.css       # Modern UI styles & Extreme responsiveness
+│   ├── img/
+│   │   └── bitcoin_fv.svg  # Project assets & icons
+│   └── js/
+│       ├── api.js          # API handling & Error management (Status 429 logic)
+│       ├── ui.js           # Rendering logic, formatters & Sparklines
+│       └── script.js       # State management, Event listeners & Sorting
+├── index.html              # Main entry point & HTML5 structure
+└── README.md               # Project documentation
